@@ -5,22 +5,23 @@ import {Github} from './Github'
 
 const ui = new UI()
 const searchEL = document.getElementById('search')
+
 searchEL.addEventListener('keyup', e => {
+	
 	if (searchEL.value.trim() && e.code === 'Enter') {
+		ui.showLoader()
 		Github.getUser(searchEL.value)
-			.then(data => {
+			.then(data => {	
+				ui.hideLoader()
 				if (data.profile.message === 'Not Found') {
-					alert('Not found');
-					
+					ui.showAlert()					
 				} else {
-					console.log(data);
 					ui.showProfile(data.profile)
+					ui.showRepos(data.repos)
 				}
-				
 			})
 	} else {
-		// clear profile
+		ui.clearProfile()
 	}
 })
 
-// console.log(git.getUser('garbuzzzz'));
