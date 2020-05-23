@@ -41,6 +41,8 @@ export class UI {
 	}
 	clearProfile() {
 		this.profile.innerHTML = ''
+		this.repos.innerHTML = ''
+
 	}
 	showAlert() {
 		const div = document.createElement('div')
